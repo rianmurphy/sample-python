@@ -1,0 +1,7 @@
+
+This is a very basic python web application.
+
+It doesn't use any framework.
+
+It is meant solely a way to see Python being used inside the 10gen app server, and integrating with the database.
+
