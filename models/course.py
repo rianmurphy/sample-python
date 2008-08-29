@@ -22,14 +22,14 @@ class Course(object):
     def findOne(cls, key="", create=False):
         if key == "":
             if create:
-                return cls.cons()
+                return cls()
             return None
         if isinstance(key, str):
             key = ObjectId(key)
         
         o = cls._c.findOne(key);
         if create and o == None:
-            o = cls.cons()
+            o = cls()
         return o
     def remove(self, key=None):
         if key == None:

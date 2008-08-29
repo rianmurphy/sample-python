@@ -17,8 +17,8 @@ else:
         if request.action == "Save":
             Forms.fillInObject("s_", myStudent, request)
         
-            if myStudent.has_key('_new'):
-                del myStudent['_new']
+            if myStudent._new:
+                myStudent._new = False
         
             myStudent.save()
             data['msg'] = "Saved"
@@ -41,7 +41,7 @@ else:
                 myStudent.addScore(c, request.score)
                 myStudent.save()
     
-        myStudent['_form'] = Forms.Form(myStudent, "s_")
+        myStudent._form = Forms.Form(myStudent, "s_")
     
         data['s'] = myStudent
     
