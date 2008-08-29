@@ -1,0 +1,120 @@
+<project default="test">
+    <target name="test">
+        <webtest name="Make sure the index page looks right">
+            <invoke url="${site}"/>
+            <xMatch text="Student Example"/>
+            <clickLink label="Student Example"/>
+            <xMatch text="Student Example"/>
+            <xMatch text="Student List"/>
+            <xMatch text="Course List"/>
+            <xMatch text="This is one of the 10gen sample applications"/>
+            <xMatch text="The code for this example is available at"/>
+        </webtest>
+        <webtest name="Add a couple of courses (with editing and deletion)">
+            <invoke url="${site}"/>
+            <clickLink label="Course List"/>
+            <clickLink label="New Course"/>
+            <xMatch text="Course Editing"/>
+            <xMatch text="New Course"/>
+            <setInputField name="c_name" value="Introduction to Computing"/>
+            <clickButton label="Save"/>
+            <clickLink Label="New Course"/>
+            <setInputField name="c_name" value="Lame Fake Course!"/>
+            <clickButton label="Save"/>
+            <clickLink Label="New Course"/>
+            <setInputField name="c_name" value="Edit Me!"/>
+            <clickButton label="Save"/>
+            <xMatch text="Courses"/>
+            <xMatch text="Edit Me!"/>
+            <xMatch text="Introduction to Computing"/>
+            <xMatch text="Lame Fake Course!"/>
+            <clickLink xPath='//*[contains(text(), "Lame Fake Course!")]/following-sibling::*//*[contains(text(), "delete")]'/>
+            <not>
+                <xMatch text="Lame Fake Course!"/>
+            </not>
+            <clickLink xPath='//*[contains(text(), "Edit Me!")]/following-sibling::*//*[contains(text(), "edit")]'/>
+            <xMatch text="Course Editing"/>
+            <setInputField name="c_name" value="Developing Scalable Internet Applications with 10gen"/>
+            <clickButton label="Save"/>
+            <xMatch text="Introduction to Computing"/>
+            <xMatch text="Developing Scalable Internet Applications with 10gen"/>
+            <not>
+                <xMatch text="Lame Fake Course!"/>
+                <xMatch text="Edit Me!"/>
+            </not>
+        </webtest>
+        <webtest name="Add a couple of students">
+            <invoke url="${site}"/>
+            <clickLink label="Student List"/>
+            <clickLink label="New Student"/>
+            <xMatch text="Student Editing"/>
+            <xMatch text="New User"/>
+            <not>
+                <xMatch text="Scores"/>
+            </not>
+            <setInputField name="s_name" value="John Doe"/>
+            <setInputField name="s_email" value="john@example.com"/>
+            <setInputField name="s_address.street" value="100 Park Place"/>
+            <setInputField name="s_address.city" value="New York"/>
+            <setInputField name="s_address.state" value="NY"/>
+            <setInputField name="s_address.postalCode" value="11111"/>
+            <clickButton label="Save"/>
+            <xMatch text="Student Editing"/>
+            <xMatch text="Scores"/>
+            <not>
+                <xMatch text="New User"/>
+                <verifyXPath xpath="//td[contains(text(), 'Course Introduction to Computing')]/following-sibling::td[contains(text(), 'B')]"/>
+                <verifyXPath xpath="//td[contains(text(), 'Developing Scalable Internet Applications with 10gen')]/following-sibling::td[contains(text(), 'A')]"/>
+            </not>
+            <setSelectField name="course_for" text="Introduction to Computing"/>
+            <setSelectField name="score" text="B"/>
+            <clickButton label="Add"/>
+            <verifyXPath xpath="//td[contains(text(), 'Course Introduction to Computing')]/following-sibling::td[contains(text(), 'B')]"/>
+            <not>
+                <verifyXPath xpath="//td[contains(text(), 'Developing Scalable Internet Applications with 10gen')]/following-sibling::td[contains(text(), 'A')]"/>
+            </not>
+            <setSelectField name="course_for" text="Developing Scalable Internet Applications with 10gen"/>
+            <setSelectField name="score" text="A"/>
+            <clickButton label="Add"/>
+            <verifyXPath xpath="//td[contains(text(), 'Course Introduction to Computing')]/following-sibling::td[contains(text(), 'B')]"/>
+            <verifyXPath xpath="//td[contains(text(), 'Developing Scalable Internet Applications with 10gen')]/following-sibling::td[contains(text(), 'A')]"/>
+            <clickLink label="Student List"/>
+            <clickLink label="New Student"/>
+            <xMatch text="Student Editing"/>
+            <xMatch text="New User"/>
+            <not>
+                <xMatch text="Scores"/>
+            </not>
+            <setInputField name="s_name" value="Eli Manning"/>
+            <setInputField name="s_email" value="eli@example.com"/>
+            <setInputField name="s_address.street" value="29 Superbowl Dr"/>
+            <setInputField name="s_address.city" value="Hoboken"/>
+            <setInputField name="s_address.state" value="NJ"/>
+            <setInputField name="s_address.postalCode" value="12345"/>
+            <clickButton label="Save"/>
+            <xMatch text="Student Editing"/>
+            <xMatch text="Scores"/>
+            <setSelectField name="course_for" text="Developing Scalable Internet Applications with 10gen"/>
+            <setSelectField name="score" text="C"/>
+            <clickButton label="Add"/>
+            <verifyXPath xpath="//td[contains(text(), 'Developing Scalable Internet Applications with 10gen')]/following-sibling::td[contains(text(), 'C')]"/>
+            <clickLink label="Student List"/>
+            <verifyXPath xpath="//td[contains(text(), 'Eli Manning')]/following-sibling::td[contains(text(), 'eli@example.com')]/following-sibling::td[contains(text(), '1')]"/>
+            <verifyXPath xpath="//td[contains(text(), 'John Doe')]/following-sibling::td[contains(text(), 'john@example.com')]/following-sibling::td[contains(text(), '2')]"/>
+        </webtest>
+        <webtest name="Editing and Deleting Students">
+            <invoke url="${site}"/>
+            <clickLink label="Student List"/>
+            <clickLink xPath='//*[contains(text(), "John Doe")]/following-sibling::*//*[contains(text(), "delete")]'/>
+            <xMatch text="Eli Manning"/>
+            <not>
+                <xMatch text="John Doe"/>
+            </not>
+            <clickLink label="edit"/>
+            <setInputField name="s_name" value="Champion!"/>
+            <clickButton label="Save"/>
+            <clickLink label="Student List"/>
+            <verifyXPath xpath="//td[contains(text(), 'Champion!')]/following-sibling::td[contains(text(), 'eli@example.com')]/following-sibling::td[contains(text(), '1')]"/>            
+        </webtest>
+    </target>
+</project>
