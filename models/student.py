@@ -27,9 +27,9 @@ class Student(object):
         #self.scores._dbCons = Score
 
     def summary(self):
-        s = self.name + '\n' + self.address.toString() + '\n'
+        s = self.name + '\n' + self.address + '\n'
         def addScore(score):
-            s += score.toString() + '\n'
+            s += score + '\n'
         map(addScore, self.scores)
         return s
     
@@ -64,7 +64,7 @@ class Student(object):
                 return
             key['_id'] = self._id
         return self._c.remove(key)
-    def toString(self):
-        return self.__str__()
+    #def toString(self):
+    #    return self.__str__()
 #MB
 Student._c.setConstructor(Student)
