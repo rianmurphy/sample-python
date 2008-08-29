@@ -1,4 +1,3 @@
-#TODO make this extend from ModelBase
 class Course(ModelBase):
     "A named course"
 

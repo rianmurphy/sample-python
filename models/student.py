@@ -1,4 +1,3 @@
-#TODO make this extend from ModelBase
 class Student(ModelBase):
     "A student. Can be enrolled in multiple courses."
 
