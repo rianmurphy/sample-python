@@ -24,7 +24,7 @@ else:
             data['msg'] = "Saved"
         
         #
-        # TODO should check request.has_key('course_for') and request.has_key('student'),
+        # NOTE should check request.has_key('course_for') and request.has_key('student'),
         # but there is something weird with request.has_key right now:
         #
         # if request.action == "Add":
