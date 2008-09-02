@@ -15,7 +15,7 @@ class Address(object):
 class Score(object):
     "Grade for a class."
     
-    def __init__(self, course, grd = 0.0):
+    def __init__(self, course=None, grd = 0.0):
         self.for_course = course
         self.grade = grd
     
