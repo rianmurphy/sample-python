@@ -36,7 +36,7 @@ else:
             course_id = request.course_for
             c = Course.findOne(course_id)
             if c == None:
-                c['msg'] = "Can't find course"
+                data['msg'] = "Can't find course"
             else:
                 myStudent.addScore(c, request.score)
                 myStudent.save()
