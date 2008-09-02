@@ -2,7 +2,6 @@ class Student(ModelBase):
     "A student. Can be enrolled in multiple courses."
 
     collectionName = 'students'
-    _c = db[collectionName]
 
     def __init__(self, name='name not set'):
         self.name = name
@@ -26,4 +25,3 @@ class Student(ModelBase):
         
     _transientFields = ["gpa", "_form", "_new"]
 
-Student.modelBaseSetup()
