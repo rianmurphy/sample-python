@@ -23,16 +23,8 @@ else:
             myStudent.save()
             data['msg'] = "Saved"
         
-        #
-        # NOTE should check request.has_key('course_for') and request.has_key('student'),
-        # but there is something weird with request.has_key right now:
-        #
-        # if request.action == "Add":
-        #    log("REQUEST: ")
-        #    log(request.keys())                    ## List includes 'course_for'
-        #    log(request.has_key('course_for'))     ## But this prints false
-        #
-        if request.action == "Add":
+        if request.action == "Add" and 'course_for' in request \
+                and 'score' in request:
             course_id = request.course_for
             c = Course.findOne(course_id)
             if c == None:
