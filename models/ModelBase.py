@@ -40,11 +40,3 @@ class ModelBase(object):
                 return
             key['_id'] = self._id
         return self._c.remove(key)
-
-    # TODO This shouldn't be necessary. But when a template goes to print a course
-    # It looks for toString and for some reason the bridge doesn't translate that
-    # to __str__
-    def toString(self):
-        return self.__str__()
-
-
