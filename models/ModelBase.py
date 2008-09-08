@@ -1,4 +1,4 @@
-import _10gen
+from _10gen import db, ObjectId
 
 class ModelMeta(type):
     def __new__(mcls, name, bases, attrs):
@@ -10,7 +10,7 @@ class ModelMeta(type):
             return cls
 
 
-        cls._c = _10gen.db[cls.collectionName]
+        cls._c = db[cls.collectionName]
         cls._c.setConstructor(cls)
         return cls
 
@@ -23,7 +23,7 @@ class ModelMeta(type):
                 return cls()
             return None
         if isinstance(key, str):
-            key = _10gen.ObjectId(key)
+            key = ObjectId(key)
 
         o = cls._c.findOne(key);
         if create and o == None:

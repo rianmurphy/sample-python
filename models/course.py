@@ -1,6 +1,6 @@
-import models.modelbase as modelbase
+from models.modelbase import ModelBase
 
-class Course(modelbase.ModelBase):
+class Course(ModelBase):
     "A named course"
 
     collectionName = 'courses'

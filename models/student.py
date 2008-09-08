@@ -1,7 +1,7 @@
-import models.modelbase as modelbase
-import models.utils as utils
+from models.modelbase import ModelBase
+from models.utils import Address, Score
 
-class Student(modelbase.ModelBase):
+class Student(ModelBase):
     "A student. Can be enrolled in multiple courses."
 
     collectionName = 'students'
@@ -9,12 +9,12 @@ class Student(modelbase.ModelBase):
     def __init__(self, name='name not set'):
         self.name = name
         self.email = "no email set"
-        self.address = utils.Address()
+        self.address = Address()
         self.scores = []
         # This is how we'd do it in JS. See below for how we do it here.
-        # self.scores._dbCons = utils.Score
+        # self.scores._dbCons = Score
 
-    _dbCons = {'scores': utils.Score}
+    _dbCons = {'scores': Score}
 
     def summary(self):
         s = self.name + '\n' + self.address + '\n'
@@ -24,7 +24,7 @@ class Student(modelbase.ModelBase):
         return s
 
     def addScore(self, course, grade):
-        self.scores.append(utils.Score(course, grade))
+        self.scores.append(Score(course, grade))
 
     _transientFields = ["gpa", "_form", "_new"]
 

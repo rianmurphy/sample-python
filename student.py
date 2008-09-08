@@ -1,21 +1,21 @@
-import models.student as student
-import models.course as course
+from models.student import Student
+from models.course import Course
 
 data = {}
 
 if request.action == "list":
-    data['ss'] = student.Student.find().limit(50).sort({'name': 1})
+    data['ss'] = Student.find().limit(50).sort({'name': 1})
 
     local.views.students(data)
 else:
-    myStudent = student.Student.findOne(request.s__id, True)
+    myStudent = Student.findOne(request.s__id, True)
 
     if request.action == "Delete":
         myStudent.remove()
         response.sendRedirectTemporary("/students")
 
     else:
-        data['courses'] = course.Course.find().toArray()
+        data['courses'] = Course.find().toArray()
 
         if request.action == "Save":
             Forms.fillInObject("s_", myStudent, request)
@@ -29,7 +29,7 @@ else:
         if request.action == "Add" and 'course_for' in request \
                 and 'score' in request:
             course_id = request.course_for
-            c = course.Course.findOne(course_id)
+            c = Course.findOne(course_id)
             if c == None:
                 data['msg'] = "Can't find course"
             else:
