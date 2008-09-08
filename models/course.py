@@ -1,4 +1,4 @@
-from modelbase import ModelBase
+from ModelBase import ModelBase
 
 class Course(ModelBase):
     "A named course"

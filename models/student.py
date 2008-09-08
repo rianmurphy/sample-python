@@ -1,4 +1,4 @@
-from modelbase import ModelBase
+from ModelBase import ModelBase
 from utils import Address, Score
 
 class Student(ModelBase):
