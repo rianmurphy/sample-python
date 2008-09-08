@@ -1,5 +1,5 @@
-from models.modelbase import ModelBase
-from models.utils import Address, Score
+from modelbase import ModelBase
+from utils import Address, Score
 
 class Student(ModelBase):
     "A student. Can be enrolled in multiple courses."
