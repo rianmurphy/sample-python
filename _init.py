@@ -1,11 +1,6 @@
 
 core.content.forms()
 
-local.models.ModelBase()
-local.models.utils()
-local.models.course()
-local.models.student()
-
 core.core.routes()
 
 routes = Routes()

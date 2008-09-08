@@ -1,3 +1,5 @@
+import _10gen
+
 class ModelMeta(type):
     def __new__(mcls, name, bases, attrs):
         cls = super(ModelMeta, mcls).__new__(mcls, name, bases, attrs)
@@ -8,7 +10,7 @@ class ModelMeta(type):
             return cls
 
 
-        cls._c = db[cls.collectionName]
+        cls._c = _10gen.db[cls.collectionName]
         cls._c.setConstructor(cls)
         return cls
 
@@ -21,8 +23,8 @@ class ModelMeta(type):
                 return cls()
             return None
         if isinstance(key, str):
-            key = ObjectId(key)
-        
+            key = _10gen.ObjectId(key)
+
         o = cls._c.findOne(key);
         if create and o == None:
             o = cls()

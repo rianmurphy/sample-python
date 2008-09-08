@@ -1,4 +1,6 @@
-class Course(ModelBase):
+import models.modelbase as modelbase
+
+class Course(modelbase.ModelBase):
     "A named course"
 
     collectionName = 'courses'
