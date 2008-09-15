@@ -1,0 +1,22 @@
+<project default="test">
+    <target name="test">
+        <webtest name="Test that the site is working">
+            <invoke url="${site}"/>
+            <verifyText text="Hello from  djang10 template!  counter is : 1"/>
+            <verifyText text="Hello from a jxp! Counter is 1  (and from our scope : 1)"/>
+            <verifyText text="Hello from html!  Counter is 1"/>
+            <invoke url="${site}"/>
+            <verifyText text="Hello from  djang10 template!  counter is : 2"/>
+            <verifyText text="Hello from a jxp! Counter is 2  (and from our scope : 2)"/>
+            <verifyText text="Hello from html!  Counter is 2"/>
+            <invoke url="${site}"/>
+            <verifyText text="Hello from  djang10 template!  counter is : 3"/>
+            <verifyText text="Hello from a jxp! Counter is 3  (and from our scope : 3)"/>
+            <verifyText text="Hello from html!  Counter is 3"/>
+            <invoke url="${site}"/>
+            <verifyText text="Hello from  djang10 template!  counter is : 4"/>
+            <verifyText text="Hello from a jxp! Counter is 4  (and from our scope : 4)"/>
+            <verifyText text="Hello from html!  Counter is 4"/>
+        </webtest>
+    </target>
+</project>

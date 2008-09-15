@@ -1,0 +1,6 @@
+This is 10gen's version of the classic "Hello World" program that is traditional
+when learning any new programming language. It shows:
+
+	 * How to use _init.py to initialize variables and configure basic routing
+	 * How to use a controller to setup data for and invoke a template
+	 * How different template types can be used interchangeably within 10gen

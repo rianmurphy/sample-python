@@ -1,0 +1,5 @@
+<image src="/assets/logo_10gen_on_blue.gif"/>
+
+<hr>
+Hello from  djang10 template!  counter is : {{ theCount }}
+

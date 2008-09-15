@@ -1,0 +1,4 @@
+<br>
+Hello from a jxp! Counter is <%= arguments[0].countThis %>  (and from our scope : <%= data.count %>)
+
+
