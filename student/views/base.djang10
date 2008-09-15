@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  
+  <head>
+	<link type="text/css" rel="stylesheet" href="/assets/sample.css" />
+  </head>
+
+  <body>
+
+    <h2><a href="/">Student Example</a></h2>
+    <ul>
+      <li><a href="/students">Student List</a></li>
+      <li><a href="/courses">Course List</a></li>
+    </ul>
+    <hr />
+    
+    {% if msg %}
+    {{ msg }}
+    {% endif %}
+    
+    {% block "content" %}
+    
+    <p>This is one of the 10gen sample applications</p>
+    <p>The code for this example is available at <a href="http://github.com/10gen/sample-student">github</a></p>
+    
+    {% endblock %}
+
+  </body>
+</html>
+

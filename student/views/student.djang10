@@ -1,0 +1,66 @@
+{% extends "/local/views/base" %}
+
+{% block "content" %}
+
+{% autoescape off %}
+
+<h3>Student Editing</h3>
+
+<form action="/student" method="POST" >
+
+  <fieldset>  
+  {% if not s._id %}
+    <legend>New User</legend>
+  {{ s._form.hidden( "_new" , true ) }}
+  {% endif %}
+
+  {{ s._form.id() }}
+
+	<label>Name</label>
+    {{ s._form.text( "name" ) }}<br />
+
+	<label>Email</label>
+	{{ s._form.text( "email" ) }}<br />
+
+	<label>Street</label>
+    {{ s._form.text( "address.street" ) }}<br />
+
+	<label>City</label>
+	{{ s._form.text( "address.city" ) }}<br />
+
+	<label>State</label>
+    {{ s._form.text( "address.state" ) }}<br />
+
+	<label>Postal Code</label>
+    {{ s._form.text( "address.postalCode" ) }}<br />
+    
+	<label></label>
+  	{{ s._form.submit( "action" , "Save" ) }}<br />
+
+	</fieldset>
+
+</form>
+
+
+{% if s._id %}
+<h3>Scores</h3>
+
+<table class="grid" cellpadding="0" cellspacing="0">
+  {% for sc in s.scores %}
+  <tr>
+    <td>{{ sc.for_course }}</td>
+    <td>{{ sc.grade }}</td>
+  </tr>
+  {% endfor %}
+</table>
+<form>
+  {{ s._form.id() }}
+  {{ s._form.select( "course_for" , null , courses ) }}
+  {{ s._form.select( "score" , null , [ "A" , "B" , "C" ] ) }}
+  {{ s._form.submit( "action" , "Add" ) }}
+</form> 
+{% endif %}
+
+{% endautoescape %}
+
+{% endblock %}

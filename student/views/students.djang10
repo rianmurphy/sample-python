@@ -1,0 +1,29 @@
+{% extends "/local/views/base" %}
+
+{% block "content" %}
+
+<h3>Students</h3>
+
+<table class="grid" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Number of Courses</th>
+  </tr>
+  {% for s in ss %}
+  <tr>
+    <td>{{ s.name }} </td>
+    <td>{{ s.email }} </td>
+    <td>{{ s.scores.length }} </td>
+    <td><a href="/student?s__id={{ s._id }}">edit</a></td>
+    <td><a href="/student?action=Delete&s__id={{ s._id }}">delete</a></td>
+  </tr>
+  {% endfor %}
+  
+</table>
+
+<br>
+
+<a href="/student">New Student</a>
+
+{% endblock %}

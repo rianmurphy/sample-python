@@ -1,0 +1,25 @@
+{% extends "/local/views/base" %}
+
+{% block "content" %}
+
+<h3>Courses</h3>
+
+<table class="grid" cellpadding="0" cellspacing="0">
+  <tr>
+    <th colspan="3">Name</th>
+  </tr>
+  {% for c in cs %}
+  <tr>
+    <td>{{ c.name }} </td>
+    <td><a href="/course?action=Edit&c__id={{ c._id }}">edit</a></td>
+    <td><a href="/course?action=Delete&c__id={{ c._id }}">delete</a></td>
+  </tr>
+  {% endfor %}
+  
+</table>
+
+<br>
+
+<a href="/course?action=New">New Course</a>
+
+{% endblock %}
