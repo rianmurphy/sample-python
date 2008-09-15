@@ -1,1 +1,9 @@
 Several sample sites using Python on 10gen.
+
+If you're just starting with Python on 10gen you should look at the
+"three-templates" site first. After understanding that look at the "student"
+site next, which gives a more thorough look at Python on 10gen. "basic" is
+meant as a proof of concept and not a tutorial.
+
+Tutorial documentation can also be reached from our main developer documentation
+page, here: http://www.10gen.com/wiki/DevDocumentation
