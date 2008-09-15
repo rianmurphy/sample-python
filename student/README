@@ -1,4 +1,4 @@
-A python version of the "student" web app. It shows:
+A Python version of the "student" web app. It shows:
 
   * The use of core.core.routes to do more advanced routing
   * The use of multiple controllers to handle application logic
