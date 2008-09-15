@@ -1,1 +1,6 @@
-A python version of sample-student.
+A python version of the "student" web app. It shows:
+
+  * The use of core.core.routes to do more advanced routing
+  * The use of multiple controllers to handle application logic
+  * Using database models to manage persistant objects
+  * More advanced use of djang10 templates
